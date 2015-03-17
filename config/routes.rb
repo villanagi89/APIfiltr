@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:show, :create, :index]
     resources :images, only: [:index, :show, :create] do
       member do
-        post 'upvote'
+        patch 'upvote'
         get 'upvote'
       end
     end
