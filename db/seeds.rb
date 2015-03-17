@@ -1,4 +1,3 @@
-Vote.destroy_all
 Image.destroy_all
 Comment.destroy_all
 Post.destroy_all
