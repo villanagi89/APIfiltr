@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :show, :create] do
     resources :comments, only: [:show, :create, :index]
     resources :images, only: [:index, :show, :create] do
-      member { post :vote }
+      member do
+        patch 'upvote'
+        get 'upvote'
+      end
     end
   end
   resources :users, defaults: {format: :json}, only: [:create] do
