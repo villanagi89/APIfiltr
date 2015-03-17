@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20150312140023) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "count"
+    t.integer  "count",      default: 0
     t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
