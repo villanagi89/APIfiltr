@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
-before_action :set_post, only: [:show, :create]
+before_filter :authenticate, only: [:vote]
+before_action :set_post, only: [:show, :create, :vote]
 
   def index
     @images = Image.all
@@ -21,16 +22,13 @@ before_action :set_post, only: [:show, :create]
     render json: @image, status: :ok
   end
 
-  def upvote
+  def vote
+    value = params[:type] == "up" ? 1 : -1
     @image = Image.find(params[:id])
-    @image.votes.create
-    #redirect_to(images_path)
+    @image.add_evaluation(:votes, value, @post.images)
+    render json: @image, status: :ok
   end
 
-  def upvote_show
-    @vote = Vote.find(params[:id])
-    render json: @vote, status: :ok
-  end
 
   private
   def set_post
@@ -38,6 +36,6 @@ before_action :set_post, only: [:show, :create]
   end
 
   def image_params
-    params.require(:image).permit(:url, :post_id)
+    params.require(:image).permit(:url, :post_id, :votes)
   end
 end

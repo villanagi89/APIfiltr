@@ -10,6 +10,7 @@ gem 'newrelic_rpm'
 gem 'rack-cors'
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 gem 'nokogiri'
+gem 'activerecord-reputation-system', require: 'reputation_system'
 group :development, :test do
   gem 'capybara'
   gem 'rubocop'
