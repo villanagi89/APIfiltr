@@ -27,6 +27,11 @@ before_action :set_post, only: [:show, :create]
     #redirect_to(images_path)
   end
 
+  def upvote_show
+    @vote = Vote.find(params[:id])
+    render json: @vote, status: :ok
+  end
+
   private
   def set_post
     @post = Post.find(params[:post_id])

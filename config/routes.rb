@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :images, only: [:index, :show, :create] do
       member do
         post 'upvote'
+        get 'upvote'
       end
     end
   end
